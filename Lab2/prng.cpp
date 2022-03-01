@@ -21,7 +21,6 @@ void prng(int seed) { // 1110011
 	}
 }
 
-
 int main() {
 	int seed;
 	seed = 1;
