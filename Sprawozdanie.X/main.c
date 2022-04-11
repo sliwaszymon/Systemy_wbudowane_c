@@ -153,7 +153,12 @@ unsigned char snake(unsigned char display){
 	}
     return display;
 }
-
+unsigned char prng(unsigned char display) {
+    int ans, xored;
+	xored = (((display >> 0) & 1) ^ ((display >> 1) & 1)) ^ (((display >> 4) & 1) ^ ((display >> 5) & 1));
+	ans = (xored << 5) | (display >> 1);
+    return ans;
+}
 //bin up
 //bin down
 //grey up
@@ -205,7 +210,7 @@ void main(void) {
                 sum = 0;
                 added = 0;
             }
-        } else if (PORTBbits.RB4 == 0) {   //task do ty?u
+        } else if (PORTBbits.RB4 == 0) {   //task do tylu
             task = setTask(task, -1);
             display = setDisplay(task);
             if (task == 3) {
@@ -241,7 +246,7 @@ void main(void) {
         } else if (task == 8) {
             continue;
         } else {
-            continue;
+            display = prng(display);
         }
     }
     return;

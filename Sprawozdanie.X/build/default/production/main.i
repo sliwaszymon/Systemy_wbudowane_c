@@ -4632,7 +4632,13 @@ unsigned char snake(unsigned char display){
  }
     return display;
 }
-# 168 "main.c"
+unsigned char prng(unsigned char display) {
+    int ans, xored;
+ xored = (((display >> 0) & 1) ^ ((display >> 1) & 1)) ^ (((display >> 4) & 1) ^ ((display >> 5) & 1));
+ ans = (xored << 5) | (display >> 1);
+    return ans;
+}
+# 173 "main.c"
 void main(void) {
     ADCON1=0x0F;
 
@@ -4707,7 +4713,7 @@ void main(void) {
         } else if (task == 7) {
             display = snake(display);
         } else if (task == 8) {
-            continue;
+            display = prng(display);
         } else {
             continue;
         }

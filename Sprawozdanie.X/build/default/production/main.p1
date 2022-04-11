@@ -951,345 +951,370 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 155: }
 [e :UE 298 ]
 }
+"156
+[; ;main.c: 156: unsigned char prng(unsigned char display) {
+[v _prng `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _prng ]
+[v _display `uc ~T0 @X0 1 r1 ]
+[f ]
+"157
+[; ;main.c: 157:     int ans, xored;
+[v _ans `i ~T0 @X0 1 a ]
+[v _xored `i ~T0 @X0 1 a ]
+"158
+[; ;main.c: 158:  xored = (((display >> 0) & 1) ^ ((display >> 1) & 1)) ^ (((display >> 4) & 1) ^ ((display >> 5) & 1));
+[e = _xored ^ ^ & >> -> _display `i -> 0 `i -> 1 `i & >> -> _display `i -> 1 `i -> 1 `i ^ & >> -> _display `i -> 4 `i -> 1 `i & >> -> _display `i -> 5 `i -> 1 `i ]
+"159
+[; ;main.c: 159:  ans = (xored << 5) | (display >> 1);
+[e = _ans | << _xored -> 5 `i >> -> _display `i -> 1 `i ]
+"160
+[; ;main.c: 160:     return ans;
+[e ) -> _ans `uc ]
+[e $UE 307  ]
+"161
+[; ;main.c: 161: }
+[e :UE 307 ]
+}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"168
-[; ;main.c: 168: void main(void) {
+"173
+[; ;main.c: 173: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"169
-[; ;main.c: 169:     ADCON1=0x0F;
-[e = _ADCON1 -> -> 15 `i `uc ]
-"171
-[; ;main.c: 171:     TRISA=0xC3;
-[e = _TRISA -> -> 195 `i `uc ]
-"172
-[; ;main.c: 172:     TRISB=0x3F;
-[e = _TRISB -> -> 63 `i `uc ]
-"173
-[; ;main.c: 173:     TRISC=0x01;
-[e = _TRISC -> -> 1 `i `uc ]
 "174
-[; ;main.c: 174:     TRISD=0x00;
-[e = _TRISD -> -> 0 `i `uc ]
-"175
-[; ;main.c: 175:     TRISE=0x00;
-[e = _TRISE -> -> 0 `i `uc ]
+[; ;main.c: 174:     ADCON1=0x0F;
+[e = _ADCON1 -> -> 15 `i `uc ]
+"176
+[; ;main.c: 176:     TRISA=0xC3;
+[e = _TRISA -> -> 195 `i `uc ]
 "177
-[; ;main.c: 177:     PORTB = 0;
-[e = _PORTB -> -> 0 `i `uc ]
+[; ;main.c: 177:     TRISB=0x3F;
+[e = _TRISB -> -> 63 `i `uc ]
+"178
+[; ;main.c: 178:     TRISC=0x01;
+[e = _TRISC -> -> 1 `i `uc ]
 "179
-[; ;main.c: 179:     unsigned char display = 0;
+[; ;main.c: 179:     TRISD=0x00;
+[e = _TRISD -> -> 0 `i `uc ]
+"180
+[; ;main.c: 180:     TRISE=0x00;
+[e = _TRISE -> -> 0 `i `uc ]
+"182
+[; ;main.c: 182:     PORTB = 0;
+[e = _PORTB -> -> 0 `i `uc ]
+"184
+[; ;main.c: 184:     unsigned char display = 0;
 [v _display `uc ~T0 @X0 1 a ]
 [e = _display -> -> 0 `i `uc ]
-"180
-[; ;main.c: 180:     int task = 1;
+"185
+[; ;main.c: 185:     int task = 1;
 [v _task `i ~T0 @X0 1 a ]
 [e = _task -> 1 `i ]
-"182
-[; ;main.c: 182:     while (1) {
-[e :U 309 ]
-{
-"183
-[; ;main.c: 183:         PORTD = display;
-[e = _PORTD _display ]
-"184
-[; ;main.c: 184:         delay(100);
-[e ( _delay (1 -> -> 100 `i `ui ]
 "187
-[; ;main.c: 187:         unsigned int i = 6000;
+[; ;main.c: 187:     while (1) {
+[e :U 310 ]
+{
+"188
+[; ;main.c: 188:         PORTD = display;
+[e = _PORTD _display ]
+"189
+[; ;main.c: 189:         delay(100);
+[e ( _delay (1 -> -> 100 `i `ui ]
+"192
+[; ;main.c: 192:         unsigned int i = 6000;
 [v _i `ui ~T0 @X0 1 a ]
 [e = _i -> -> 6000 `i `ui ]
-"188
-[; ;main.c: 188:         while (PORTBbits.RB4 && PORTBbits.RB3 && i > 0) {
-[e $U 311  ]
-[e :U 312 ]
-{
-"189
-[; ;main.c: 189:             i--;
-[e -- _i -> -> 1 `i `ui ]
-"190
-[; ;main.c: 190:         }
-}
-[e :U 311 ]
-"188
-[; ;main.c: 188:         while (PORTBbits.RB4 && PORTBbits.RB3 && i > 0) {
-[e $ && && != -> . . _PORTBbits 0 4 `i -> 0 `i != -> . . _PORTBbits 0 3 `i -> 0 `i > _i -> -> 0 `i `ui 312  ]
-[e :U 313 ]
-"191
-[; ;main.c: 191:         if (PORTBbits.RB3 == 0) {
-[e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 314  ]
-{
-"192
-[; ;main.c: 192:             task = setTask(task, 1);
-[e = _task ( _setTask (2 , _task -> 1 `i ]
 "193
-[; ;main.c: 193:             display = setDisplay(task);
-[e = _display ( _setDisplay (1 _task ]
-"194
-[; ;main.c: 194:             if (task == 3) {
-[e $ ! == _task -> 3 `i 315  ]
+[; ;main.c: 193:         while (PORTBbits.RB4 && PORTBbits.RB3 && i > 0) {
+[e $U 312  ]
+[e :U 313 ]
 {
+"194
+[; ;main.c: 194:             i--;
+[e -- _i -> -> 1 `i `ui ]
 "195
-[; ;main.c: 195:                 grey = 1;
-[e = _grey -> -> 1 `i `uc ]
-"196
-[; ;main.c: 196:             } else if (task == 4) {
+[; ;main.c: 195:         }
 }
-[e $U 316  ]
-[e :U 315 ]
-[e $ ! == _task -> 4 `i 317  ]
+[e :U 312 ]
+"193
+[; ;main.c: 193:         while (PORTBbits.RB4 && PORTBbits.RB3 && i > 0) {
+[e $ && && != -> . . _PORTBbits 0 4 `i -> 0 `i != -> . . _PORTBbits 0 3 `i -> 0 `i > _i -> -> 0 `i `ui 313  ]
+[e :U 314 ]
+"196
+[; ;main.c: 196:         if (PORTBbits.RB3 == 0) {
+[e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 315  ]
 {
 "197
-[; ;main.c: 197:                 grey = 255;
-[e = _grey -> -> 255 `i `uc ]
+[; ;main.c: 197:             task = setTask(task, 1);
+[e = _task ( _setTask (2 , _task -> 1 `i ]
 "198
-[; ;main.c: 198:             } else if (task == 5) {
-}
-[e $U 318  ]
-[e :U 317 ]
-[e $ ! == _task -> 5 `i 319  ]
-{
-"199
-[; ;main.c: 199:                 bcd = 0;
-[e = _bcd -> -> 0 `i `uc ]
-"200
-[; ;main.c: 200:             } else if (task == 6) {
-}
-[e $U 320  ]
-[e :U 319 ]
-[e $ ! == _task -> 6 `i 321  ]
-{
-"201
-[; ;main.c: 201:                 bcd = 99;
-[e = _bcd -> -> 99 `i `uc ]
-"202
-[; ;main.c: 202:             } else if (task == 7) {
-}
-[e $U 322  ]
-[e :U 321 ]
-[e $ ! == _task -> 7 `i 323  ]
-{
-"203
-[; ;main.c: 203:                 direction = 1;
-[e = _direction -> 1 `i ]
-"204
-[; ;main.c: 204:             } else if (task == 8) {
-}
-[e $U 324  ]
-[e :U 323 ]
-[e $ ! == _task -> 8 `i 325  ]
-{
-"205
-[; ;main.c: 205:                 sum = 0;
-[e = _sum -> 0 `i ]
-"206
-[; ;main.c: 206:                 added = 0;
-[e = _added -> 0 `i ]
-"207
-[; ;main.c: 207:             }
-}
-[e :U 325 ]
-[e :U 324 ]
-[e :U 322 ]
-[e :U 320 ]
-[e :U 318 ]
-[e :U 316 ]
-"208
-[; ;main.c: 208:         } else if (PORTBbits.RB4 == 0) {
-}
-[e $U 326  ]
-[e :U 314 ]
-[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 327  ]
-{
-"209
-[; ;main.c: 209:             task = setTask(task, -1);
-[e = _task ( _setTask (2 , _task -U -> 1 `i ]
-"210
-[; ;main.c: 210:             display = setDisplay(task);
+[; ;main.c: 198:             display = setDisplay(task);
 [e = _display ( _setDisplay (1 _task ]
-"211
-[; ;main.c: 211:             if (task == 3) {
-[e $ ! == _task -> 3 `i 328  ]
+"199
+[; ;main.c: 199:             if (task == 3) {
+[e $ ! == _task -> 3 `i 316  ]
 {
-"212
-[; ;main.c: 212:                 grey = 1;
+"200
+[; ;main.c: 200:                 grey = 1;
 [e = _grey -> -> 1 `i `uc ]
-"213
-[; ;main.c: 213:             } else if (task == 4) {
+"201
+[; ;main.c: 201:             } else if (task == 4) {
 }
-[e $U 329  ]
-[e :U 328 ]
-[e $ ! == _task -> 4 `i 330  ]
+[e $U 317  ]
+[e :U 316 ]
+[e $ ! == _task -> 4 `i 318  ]
+{
+"202
+[; ;main.c: 202:                 grey = 255;
+[e = _grey -> -> 255 `i `uc ]
+"203
+[; ;main.c: 203:             } else if (task == 5) {
+}
+[e $U 319  ]
+[e :U 318 ]
+[e $ ! == _task -> 5 `i 320  ]
+{
+"204
+[; ;main.c: 204:                 bcd = 0;
+[e = _bcd -> -> 0 `i `uc ]
+"205
+[; ;main.c: 205:             } else if (task == 6) {
+}
+[e $U 321  ]
+[e :U 320 ]
+[e $ ! == _task -> 6 `i 322  ]
+{
+"206
+[; ;main.c: 206:                 bcd = 99;
+[e = _bcd -> -> 99 `i `uc ]
+"207
+[; ;main.c: 207:             } else if (task == 7) {
+}
+[e $U 323  ]
+[e :U 322 ]
+[e $ ! == _task -> 7 `i 324  ]
+{
+"208
+[; ;main.c: 208:                 direction = 1;
+[e = _direction -> 1 `i ]
+"209
+[; ;main.c: 209:             } else if (task == 8) {
+}
+[e $U 325  ]
+[e :U 324 ]
+[e $ ! == _task -> 8 `i 326  ]
+{
+"210
+[; ;main.c: 210:                 sum = 0;
+[e = _sum -> 0 `i ]
+"211
+[; ;main.c: 211:                 added = 0;
+[e = _added -> 0 `i ]
+"212
+[; ;main.c: 212:             }
+}
+[e :U 326 ]
+[e :U 325 ]
+[e :U 323 ]
+[e :U 321 ]
+[e :U 319 ]
+[e :U 317 ]
+"213
+[; ;main.c: 213:         } else if (PORTBbits.RB4 == 0) {
+}
+[e $U 327  ]
+[e :U 315 ]
+[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 328  ]
 {
 "214
-[; ;main.c: 214:                 grey = 255;
-[e = _grey -> -> 255 `i `uc ]
+[; ;main.c: 214:             task = setTask(task, -1);
+[e = _task ( _setTask (2 , _task -U -> 1 `i ]
 "215
-[; ;main.c: 215:             } else if (task == 5) {
-}
-[e $U 331  ]
-[e :U 330 ]
-[e $ ! == _task -> 5 `i 332  ]
-{
+[; ;main.c: 215:             display = setDisplay(task);
+[e = _display ( _setDisplay (1 _task ]
 "216
-[; ;main.c: 216:                 bcd = 0;
-[e = _bcd -> -> 0 `i `uc ]
+[; ;main.c: 216:             if (task == 3) {
+[e $ ! == _task -> 3 `i 329  ]
+{
 "217
-[; ;main.c: 217:             } else if (task == 6) {
-}
-[e $U 333  ]
-[e :U 332 ]
-[e $ ! == _task -> 6 `i 334  ]
-{
+[; ;main.c: 217:                 grey = 1;
+[e = _grey -> -> 1 `i `uc ]
 "218
-[; ;main.c: 218:                 bcd = 99;
-[e = _bcd -> -> 99 `i `uc ]
-"219
-[; ;main.c: 219:             } else if (task == 7) {
+[; ;main.c: 218:             } else if (task == 4) {
 }
-[e $U 335  ]
-[e :U 334 ]
-[e $ ! == _task -> 7 `i 336  ]
-{
-"220
-[; ;main.c: 220:                 direction = 1;
-[e = _direction -> 1 `i ]
-"221
-[; ;main.c: 221:             } else if (task == 8) {
-}
-[e $U 337  ]
-[e :U 336 ]
-[e $ ! == _task -> 8 `i 338  ]
-{
-"222
-[; ;main.c: 222:                 sum = 0;
-[e = _sum -> 0 `i ]
-"223
-[; ;main.c: 223:                 added = 0;
-[e = _added -> 0 `i ]
-"224
-[; ;main.c: 224:             }
-}
-[e :U 338 ]
-[e :U 337 ]
-[e :U 335 ]
-[e :U 333 ]
-[e :U 331 ]
+[e $U 330  ]
 [e :U 329 ]
+[e $ ! == _task -> 4 `i 331  ]
+{
+"219
+[; ;main.c: 219:                 grey = 255;
+[e = _grey -> -> 255 `i `uc ]
+"220
+[; ;main.c: 220:             } else if (task == 5) {
+}
+[e $U 332  ]
+[e :U 331 ]
+[e $ ! == _task -> 5 `i 333  ]
+{
+"221
+[; ;main.c: 221:                 bcd = 0;
+[e = _bcd -> -> 0 `i `uc ]
+"222
+[; ;main.c: 222:             } else if (task == 6) {
+}
+[e $U 334  ]
+[e :U 333 ]
+[e $ ! == _task -> 6 `i 335  ]
+{
+"223
+[; ;main.c: 223:                 bcd = 99;
+[e = _bcd -> -> 99 `i `uc ]
+"224
+[; ;main.c: 224:             } else if (task == 7) {
+}
+[e $U 336  ]
+[e :U 335 ]
+[e $ ! == _task -> 7 `i 337  ]
+{
 "225
-[; ;main.c: 225:         }
+[; ;main.c: 225:                 direction = 1;
+[e = _direction -> 1 `i ]
+"226
+[; ;main.c: 226:             } else if (task == 8) {
 }
-[e :U 327 ]
-[e :U 326 ]
+[e $U 338  ]
+[e :U 337 ]
+[e $ ! == _task -> 8 `i 339  ]
+{
 "227
-[; ;main.c: 227:         if (task == 1) {
-[e $ ! == _task -> 1 `i 339  ]
-{
+[; ;main.c: 227:                 sum = 0;
+[e = _sum -> 0 `i ]
 "228
-[; ;main.c: 228:             display = bin_up(display);
-[e = _display ( _bin_up (1 _display ]
+[; ;main.c: 228:                 added = 0;
+[e = _added -> 0 `i ]
 "229
-[; ;main.c: 229:         } else if (task == 2) {
+[; ;main.c: 229:             }
 }
-[e $U 340  ]
 [e :U 339 ]
-[e $ ! == _task -> 2 `i 341  ]
-{
+[e :U 338 ]
+[e :U 336 ]
+[e :U 334 ]
+[e :U 332 ]
+[e :U 330 ]
 "230
-[; ;main.c: 230:             display = bin_down(display);
-[e = _display ( _bin_down (1 _display ]
-"231
-[; ;main.c: 231:         } else if (task == 3) {
+[; ;main.c: 230:         }
 }
-[e $U 342  ]
-[e :U 341 ]
-[e $ ! == _task -> 3 `i 343  ]
-{
+[e :U 328 ]
+[e :U 327 ]
 "232
-[; ;main.c: 232:             display = grey_up(display);
-[e = _display ( _grey_up (1 _display ]
+[; ;main.c: 232:         if (task == 1) {
+[e $ ! == _task -> 1 `i 340  ]
+{
 "233
-[; ;main.c: 233:         } else if (task == 4) {
-}
-[e $U 344  ]
-[e :U 343 ]
-[e $ ! == _task -> 4 `i 345  ]
-{
+[; ;main.c: 233:             display = bin_up(display);
+[e = _display ( _bin_up (1 _display ]
 "234
-[; ;main.c: 234:             display = grey_down(display);
-[e = _display ( _grey_down (1 _display ]
-"235
-[; ;main.c: 235:         } else if (task == 5) {
+[; ;main.c: 234:         } else if (task == 2) {
 }
-[e $U 346  ]
-[e :U 345 ]
-[e $ ! == _task -> 5 `i 347  ]
-{
-"236
-[; ;main.c: 236:             display = bcd_up();
-[e = _display ( _bcd_up ..  ]
-"237
-[; ;main.c: 237:         } else if (task == 6) {
-}
-[e $U 348  ]
-[e :U 347 ]
-[e $ ! == _task -> 6 `i 349  ]
-{
-"238
-[; ;main.c: 238:             display = bcd_down();
-[e = _display ( _bcd_down ..  ]
-"239
-[; ;main.c: 239:         } else if (task == 7) {
-}
-[e $U 350  ]
-[e :U 349 ]
-[e $ ! == _task -> 7 `i 351  ]
-{
-"240
-[; ;main.c: 240:             display = snake(display);
-[e = _display ( _snake (1 _display ]
-"241
-[; ;main.c: 241:         } else if (task == 8) {
-}
-[e $U 352  ]
-[e :U 351 ]
-[e $ ! == _task -> 8 `i 353  ]
-{
-"242
-[; ;main.c: 242:             continue;
-[e $U 308  ]
-"243
-[; ;main.c: 243:         } else {
-}
-[e $U 354  ]
-[e :U 353 ]
-{
-"244
-[; ;main.c: 244:             continue;
-[e $U 308  ]
-"245
-[; ;main.c: 245:         }
-}
-[e :U 354 ]
-[e :U 352 ]
-[e :U 350 ]
-[e :U 348 ]
-[e :U 346 ]
-[e :U 344 ]
-[e :U 342 ]
+[e $U 341  ]
 [e :U 340 ]
-"246
-[; ;main.c: 246:     }
+[e $ ! == _task -> 2 `i 342  ]
+{
+"235
+[; ;main.c: 235:             display = bin_down(display);
+[e = _display ( _bin_down (1 _display ]
+"236
+[; ;main.c: 236:         } else if (task == 3) {
 }
-[e :U 308 ]
-[e $U 309  ]
-[e :U 310 ]
+[e $U 343  ]
+[e :U 342 ]
+[e $ ! == _task -> 3 `i 344  ]
+{
+"237
+[; ;main.c: 237:             display = grey_up(display);
+[e = _display ( _grey_up (1 _display ]
+"238
+[; ;main.c: 238:         } else if (task == 4) {
+}
+[e $U 345  ]
+[e :U 344 ]
+[e $ ! == _task -> 4 `i 346  ]
+{
+"239
+[; ;main.c: 239:             display = grey_down(display);
+[e = _display ( _grey_down (1 _display ]
+"240
+[; ;main.c: 240:         } else if (task == 5) {
+}
+[e $U 347  ]
+[e :U 346 ]
+[e $ ! == _task -> 5 `i 348  ]
+{
+"241
+[; ;main.c: 241:             display = bcd_up();
+[e = _display ( _bcd_up ..  ]
+"242
+[; ;main.c: 242:         } else if (task == 6) {
+}
+[e $U 349  ]
+[e :U 348 ]
+[e $ ! == _task -> 6 `i 350  ]
+{
+"243
+[; ;main.c: 243:             display = bcd_down();
+[e = _display ( _bcd_down ..  ]
+"244
+[; ;main.c: 244:         } else if (task == 7) {
+}
+[e $U 351  ]
+[e :U 350 ]
+[e $ ! == _task -> 7 `i 352  ]
+{
+"245
+[; ;main.c: 245:             display = snake(display);
+[e = _display ( _snake (1 _display ]
+"246
+[; ;main.c: 246:         } else if (task == 8) {
+}
+[e $U 353  ]
+[e :U 352 ]
+[e $ ! == _task -> 8 `i 354  ]
+{
 "247
-[; ;main.c: 247:     return;
-[e $UE 307  ]
+[; ;main.c: 247:             display = prng(display);
+[e = _display ( _prng (1 _display ]
 "248
-[; ;main.c: 248: }
-[e :UE 307 ]
+[; ;main.c: 248:         } else {
+}
+[e $U 355  ]
+[e :U 354 ]
+{
+"249
+[; ;main.c: 249:             continue;
+[e $U 309  ]
+"250
+[; ;main.c: 250:         }
+}
+[e :U 355 ]
+[e :U 353 ]
+[e :U 351 ]
+[e :U 349 ]
+[e :U 347 ]
+[e :U 345 ]
+[e :U 343 ]
+[e :U 341 ]
+"251
+[; ;main.c: 251:     }
+}
+[e :U 309 ]
+[e $U 310  ]
+[e :U 311 ]
+"252
+[; ;main.c: 252:     return;
+[e $UE 308  ]
+"253
+[; ;main.c: 253: }
+[e :UE 308 ]
 }
