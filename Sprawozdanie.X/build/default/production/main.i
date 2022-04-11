@@ -4534,27 +4534,106 @@ unsigned char __t3rd16on(void);
 # 56 "main.c" 2
 
 
-void delay(unsigned int ms)
-{
+unsigned char grey = 0;
+unsigned char bcd = 0;
+int sum = 0;
+int added = 0;
+int direction = 1;
+
+void delay(unsigned int ms){
     unsigned int i;
     unsigned char j;
-
- for (i =0; i< ms; i++)
- {
-
-  for (j =0 ; j < 200; j++)
-   {
-      __nop();
-      __nop();
-      __nop();
-      __nop();
-      __nop();
-   }
- }
+    for (i =0; i< ms; i++){
+        for (j =0 ; j < 200; j++){
+            __nop();
+            __nop();
+            __nop();
+            __nop();
+            __nop();
+        }
+    }
 }
 
-void main(void) {
+int setTask(int task, int change) {
+    task = task + change;
+    if (task == 10) {
+        task = 1;
+    } else if (task == 0) {
+        task = 9;
+    }
+    return task;
+}
 
+unsigned char setDisplay(int task) {
+    if (task == 2) {
+        return 255;
+    } else if (task == 9) {
+        return 1;
+    } else if (task == 1 || task == 3 || task == 7){
+        return 0;
+    }
+}
+
+unsigned char bin_up(unsigned char display) {
+    return (display + 1);
+}
+unsigned char bin_down(unsigned char display) {
+    return (display - 1);
+}
+unsigned char grey_up(unsigned char display) {
+    display = (grey >>1) ^ grey;
+    grey = grey + 1;
+    return display;
+}
+unsigned char grey_down(unsigned char display) {
+    display = (grey >>1) ^ grey;
+    grey = grey - 1;
+    return display;
+}
+unsigned char bcd_up() {
+    unsigned int display;
+    if (bcd > 99) {
+        bcd = 1;
+    } else {
+        display = ((bcd / 10) << 4) | (bcd % 10);
+        bcd = bcd + 1;
+    }
+    return display;
+}
+unsigned char bcd_down() {
+    unsigned int display;
+    if (bcd == 0) {
+        bcd = 99;
+    } else {
+        display = ((bcd / 10) << 4) | (bcd % 10);
+        bcd = bcd - 1;
+    }
+    return display;
+}
+unsigned char snake(unsigned char display){
+    if (display < 7) {
+  display = (display << 1) ^ 1;
+ } else {
+  if (direction == 1) {
+            if (display == 224) {
+    direction = 0;
+    display = display >> 1;
+            } else {
+    display = display << 1;
+   }
+  } else {
+   if (display == 7) {
+    direction = 1;
+    display = display << 1;
+   } else {
+    display = display >>1;
+   }
+  }
+ }
+    return display;
+}
+# 168 "main.c"
+void main(void) {
     ADCON1=0x0F;
 
     TRISA=0xC3;
@@ -4566,31 +4645,72 @@ void main(void) {
     PORTB = 0;
 
     unsigned char display = 0;
+    int task = 1;
 
-    while(1)
-    {
+    while (1) {
         PORTD = display;
         delay(100);
 
 
         unsigned int i = 6000;
-        while(PORTBbits.RB4 && PORTBbits.RB3 && i > 0)
-        {
+        while (PORTBbits.RB4 && PORTBbits.RB3 && i > 0) {
             i--;
         }
+        if (PORTBbits.RB3 == 0) {
+            task = setTask(task, 1);
+            display = setDisplay(task);
+            if (task == 3) {
+                grey = 1;
+            } else if (task == 4) {
+                grey = 255;
+            } else if (task == 5) {
+                bcd = 0;
+            } else if (task == 6) {
+                bcd = 99;
+            } else if (task == 7) {
+                direction = 1;
+            } else if (task == 8) {
+                sum = 0;
+                added = 0;
+            }
+        } else if (PORTBbits.RB4 == 0) {
+            task = setTask(task, -1);
+            display = setDisplay(task);
+            if (task == 3) {
+                grey = 1;
+            } else if (task == 4) {
+                grey = 255;
+            } else if (task == 5) {
+                bcd = 0;
+            } else if (task == 6) {
+                bcd = 99;
+            } else if (task == 7) {
+                direction = 1;
+            } else if (task == 8) {
+                sum = 0;
+                added = 0;
+            }
+        }
 
-        if(PORTBbits.RB3 == 0)
-        {
-            display --;
+        if (task == 1) {
+            display = bin_up(display);
+        } else if (task == 2) {
+            display = bin_down(display);
+        } else if (task == 3) {
+            display = grey_up(display);
+        } else if (task == 4) {
+            display = grey_down(display);
+        } else if (task == 5) {
+            display = bcd_up();
+        } else if (task == 6) {
+            display = bcd_down();
+        } else if (task == 7) {
+            display = snake(display);
+        } else if (task == 8) {
+            continue;
+        } else {
+            continue;
         }
-        else if(PORTBbits.RB4 == 0)
-        {
-            display = 0;
-        }
-        else
-            display++;
     }
-
-
     return;
 }
