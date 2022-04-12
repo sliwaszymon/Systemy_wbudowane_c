@@ -31,7 +31,7 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"64 C:\Users\szymo\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie.X\main.c
+"64 C:\Users\Szymon\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie.X\main.c
 [v _delay delay `(v  1 e 1 0 ]
 "78
 [v _setTask setTask `(i  1 e 2 0 ]
@@ -39,21 +39,23 @@
 [v _setDisplay setDisplay `(uc  1 e 1 0 ]
 "98
 [v _bin_up bin_up `(uc  1 e 1 0 ]
-"101
+"102
 [v _bin_down bin_down `(uc  1 e 1 0 ]
-"104
+"106
 [v _grey_up grey_up `(uc  1 e 1 0 ]
-"109
+"112
 [v _grey_down grey_down `(uc  1 e 1 0 ]
-"114
+"118
 [v _bcd_up bcd_up `(uc  1 e 1 0 ]
-"124
+"129
 [v _bcd_down bcd_down `(uc  1 e 1 0 ]
-"134
+"140
 [v _snake snake `(uc  1 e 1 0 ]
-"156
+"163
+[v _queue queue `(uc  1 e 1 0 ]
+"178
 [v _prng prng `(uc  1 e 1 0 ]
-"173
+"185
 [v _main main `(v  1 e 1 0 ]
 "190 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
@@ -104,7 +106,7 @@
 [v _TRISE TRISE `VEuc  1 e 1 @3990 ]
 "4445
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-"58 C:\Users\szymo\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie.X\main.c
+"58 C:\Users\Szymon\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie.X\main.c
 [v _grey grey `uc  1 e 1 0 ]
 "59
 [v _bcd bcd `uc  1 e 1 0 ]
@@ -114,24 +116,24 @@
 [v _added added `i  1 e 2 0 ]
 "62
 [v _direction direction `i  1 e 2 0 ]
-"173
+"185
 [v _main main `(v  1 e 1 0 ]
 {
-"192
+"204
 [v main@i i `ui  1 a 2 12 ]
-"185
+"197
 [v main@task task `i  1 a 2 15 ]
-"184
+"196
 [v main@display display `uc  1 a 1 14 ]
-"253
+"265
 } 0
-"134
+"140
 [v _snake snake `(uc  1 e 1 0 ]
 {
 [v snake@display display `uc  1 a 1 wreg ]
 [v snake@display display `uc  1 a 1 wreg ]
 [v snake@display display `uc  1 a 1 0 ]
-"155
+"161
 } 0
 "78
 [v _setTask setTask `(i  1 e 2 0 ]
@@ -146,32 +148,37 @@
 [v setDisplay@task task `i  1 p 2 0 ]
 "96
 } 0
-"156
+"163
+[v _queue queue `(uc  1 e 1 0 ]
+{
+"176
+} 0
+"178
 [v _prng prng `(uc  1 e 1 0 ]
 {
 [v prng@display display `uc  1 a 1 wreg ]
-"157
+"179
 [v prng@xored xored `i  1 a 2 7 ]
 [v prng@ans ans `i  1 a 2 5 ]
-"156
+"178
 [v prng@display display `uc  1 a 1 wreg ]
-"158
+"180
 [v prng@display display `uc  1 a 1 9 ]
-"161
+"183
 } 0
-"104
+"106
 [v _grey_up grey_up `(uc  1 e 1 0 ]
 {
 [v grey_up@display display `uc  1 a 1 wreg ]
 [v grey_up@display display `uc  1 a 1 wreg ]
-"108
+"110
 } 0
-"109
+"112
 [v _grey_down grey_down `(uc  1 e 1 0 ]
 {
 [v grey_down@display display `uc  1 a 1 wreg ]
 [v grey_down@display display `uc  1 a 1 wreg ]
-"113
+"116
 } 0
 "64
 [v _delay delay `(v  1 e 1 0 ]
@@ -192,27 +199,27 @@
 [v bin_up@display display `uc  1 a 1 0 ]
 "100
 } 0
-"101
+"102
 [v _bin_down bin_down `(uc  1 e 1 0 ]
 {
 [v bin_down@display display `uc  1 a 1 wreg ]
 [v bin_down@display display `uc  1 a 1 wreg ]
 [v bin_down@display display `uc  1 a 1 0 ]
-"103
+"104
 } 0
-"114
+"118
 [v _bcd_up bcd_up `(uc  1 e 1 0 ]
 {
-"115
+"119
 [v bcd_up@display display `ui  1 a 2 10 ]
-"123
+"127
 } 0
-"124
+"129
 [v _bcd_down bcd_down `(uc  1 e 1 0 ]
 {
-"125
+"130
 [v bcd_down@display display `ui  1 a 2 10 ]
-"133
+"138
 } 0
 "7 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]

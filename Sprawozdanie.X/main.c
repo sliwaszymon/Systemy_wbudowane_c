@@ -98,19 +98,23 @@ unsigned char setDisplay(int task) {
 unsigned char bin_up(unsigned char display) {
     return (display + 1);
 }
+
 unsigned char bin_down(unsigned char display) {
     return (display - 1);
 }
+
 unsigned char grey_up(unsigned char display) {
     display = (grey >>1) ^ grey;
     grey = grey + 1;
     return display;
 }
+
 unsigned char grey_down(unsigned char display) {
     display = (grey >>1) ^ grey;
     grey = grey - 1;
     return display;
 }
+
 unsigned char bcd_up() {
     unsigned int display;
     if (bcd > 99) {
@@ -121,6 +125,7 @@ unsigned char bcd_up() {
     }
     return display;
 }
+
 unsigned char bcd_down() {
     unsigned int display;
     if (bcd == 0) {
@@ -131,6 +136,7 @@ unsigned char bcd_down() {
     }
     return display;
 }
+
 unsigned char snake(unsigned char display){
     if (display < 7) {
 		display = (display << 1) ^ 1;
@@ -153,22 +159,28 @@ unsigned char snake(unsigned char display){
 	}
     return display;
 }
+
+unsigned char queue() {
+    if (sum == 128 || sum == 192 || sum == 224 || sum == 240 || sum == 248 || sum ==252 || sum == 254) {
+        added = 1;
+        sum = sum ^ added;
+    } else if (sum == 255) {
+        sum = 1;
+        added = 1;
+    } else {
+        sum = sum ^ added;
+        added = added << 1;
+        sum = sum ^ added;
+    }
+    return sum;
+}
+
 unsigned char prng(unsigned char display) {
     int ans, xored;
 	xored = (((display >> 0) & 1) ^ ((display >> 1) & 1)) ^ (((display >> 4) & 1) ^ ((display >> 5) & 1));
 	ans = (xored << 5) | (display >> 1);
     return ans;
 }
-//bin up
-//bin down
-//grey up
-//grey down
-//bcd up
-//bcd down
-//3-bit snake
-//queue
-//prng lfsr 1110011
-
 
 void main(void) {
     ADCON1=0x0F;
@@ -207,8 +219,8 @@ void main(void) {
             } else if (task == 7) {
                 direction = 1;
             } else if (task == 8) {
-                sum = 0;
-                added = 0;
+                sum = 1;
+                added = 1;
             }
         } else if (PORTBbits.RB4 == 0) {   //task do tylu
             task = setTask(task, -1);
@@ -224,8 +236,8 @@ void main(void) {
             } else if (task == 7) {
                 direction = 1;
             } else if (task == 8) {
-                sum = 0;
-                added = 0;
+                sum = 1;
+                added = 1;
             }
         }
         
@@ -244,7 +256,7 @@ void main(void) {
         } else if (task == 7) {
             display = snake(display);
         } else if (task == 8) {
-            continue;
+            display = queue();
         } else {
             display = prng(display);
         }
