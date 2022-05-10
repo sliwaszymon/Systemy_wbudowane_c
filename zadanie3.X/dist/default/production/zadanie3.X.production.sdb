@@ -1,0 +1,234 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4620 ]
+[d frameptr 4065 ]
+"4 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"72 C:\Users\szymo\Documents\GitHub\Systemy_wbudowane_c\zadanie3.X\main.c
+[v _delay delay `(v  1 e 1 0 ]
+"106
+[v _lcd_wr lcd_wr `(v  1 e 1 0 ]
+"111
+[v _lcd_cmd lcd_cmd `(v  1 e 1 0 ]
+"122
+[v _lcd_dat lcd_dat `(v  1 e 1 0 ]
+"133
+[v _lcd_init lcd_init `(v  1 e 1 0 ]
+"152
+[v _lcd_str lcd_str `(v  1 e 1 0 ]
+"163
+[v _lcd_custom_char lcd_custom_char `(v  1 e 1 0 ]
+"171
+[v _main main `(v  1 e 1 0 ]
+"536 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
+[v _PORTD PORTD `VEuc  1 e 1 @3971 ]
+[s S100 . 1 `uc 1 RE0 1 0 :1:0 
+`uc 1 RE1 1 0 :1:1 
+`uc 1 RE2 1 0 :1:2 
+`uc 1 RE3 1 0 :1:3 
+]
+"736
+[s S105 . 1 `uc 1 RD 1 0 :1:0 
+`uc 1 WR 1 0 :1:1 
+`uc 1 CS 1 0 :1:2 
+`uc 1 MCLR 1 0 :1:3 
+]
+[s S110 . 1 `uc 1 NOT_RD 1 0 :1:0 
+]
+[s S112 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_WR 1 0 :1:1 
+]
+[s S115 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_CS 1 0 :1:2 
+]
+[s S118 . 1 `uc 1 . 1 0 :3:0 
+`uc 1 NOT_MCLR 1 0 :1:3 
+]
+[s S121 . 1 `uc 1 nRD 1 0 :1:0 
+`uc 1 nWR 1 0 :1:1 
+`uc 1 nCS 1 0 :1:2 
+`uc 1 nMCLR 1 0 :1:3 
+]
+[s S126 . 1 `uc 1 AN5 1 0 :1:0 
+`uc 1 AN6 1 0 :1:1 
+`uc 1 AN7 1 0 :1:2 
+`uc 1 VPP 1 0 :1:3 
+]
+[s S131 . 1 `uc 1 PD2 1 0 :1:0 
+`uc 1 PC2 1 0 :1:1 
+`uc 1 CCP10 1 0 :1:2 
+`uc 1 CCP9E 1 0 :1:3 
+]
+[s S136 . 1 `uc 1 RDE 1 0 :1:0 
+`uc 1 WRE 1 0 :1:1 
+`uc 1 PB2 1 0 :1:2 
+`uc 1 PC3E 1 0 :1:3 
+]
+[u S141 . 1 `S100 1 . 1 0 `S105 1 . 1 0 `S110 1 . 1 0 `S112 1 . 1 0 `S115 1 . 1 0 `S118 1 . 1 0 `S121 1 . 1 0 `S126 1 . 1 0 `S131 1 . 1 0 `S136 1 . 1 0 ]
+[v _PORTEbits PORTEbits `VES141  1 e 1 @3972 ]
+"1381
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1603
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"1825
+[v _TRISC TRISC `VEuc  1 e 1 @3988 ]
+"2047
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"2269
+[v _TRISE TRISE `VEuc  1 e 1 @3990 ]
+"4374
+[v _ADCON2 ADCON2 `VEuc  1 e 1 @4032 ]
+"4445
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"4530
+[v _ADCON0 ADCON0 `VEuc  1 e 1 @4034 ]
+[s S29 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_NOT_DONE 1 0 :1:1 
+]
+"4574
+[s S32 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+]
+[s S36 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+]
+[s S43 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 DONE 1 0 :1:1 
+]
+[s S46 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_DONE 1 0 :1:1 
+]
+[s S49 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S52 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[s S55 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GODONE 1 0 :1:1 
+]
+[u S58 . 1 `S29 1 . 1 0 `S32 1 . 1 0 `S36 1 . 1 0 `S43 1 . 1 0 `S46 1 . 1 0 `S49 1 . 1 0 `S52 1 . 1 0 `S55 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES58  1 e 1 @4034 ]
+"4656
+[v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
+"4663
+[v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
+"171 C:\Users\szymo\Documents\GitHub\Systemy_wbudowane_c\zadanie3.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"192
+[v main@ciapki ciapki `[8]uc  1 a 8 47 ]
+"191
+[v main@sad sad `[8]uc  1 a 8 39 ]
+"190
+[v main@smile smile `[8]uc  1 a 8 31 ]
+"189
+[v main@empty_bottle empty_bottle `[8]uc  1 a 8 23 ]
+"188
+[v main@half_bottle half_bottle `[8]uc  1 a 8 15 ]
+"187
+[v main@full_bottle full_bottle `[8]uc  1 a 8 7 ]
+"185
+[v main@F2494 F2494 `[8]uc  1 s 8 F2494 ]
+"187
+[v main@F2496 F2496 `[8]uc  1 s 8 F2496 ]
+"188
+[v main@F2498 F2498 `[8]uc  1 s 8 F2498 ]
+"189
+[v main@F2500 F2500 `[8]uc  1 s 8 F2500 ]
+"190
+[v main@F2502 F2502 `[8]uc  1 s 8 F2502 ]
+"191
+[v main@F2504 F2504 `[8]uc  1 s 8 F2504 ]
+"337
+} 0
+"152
+[v _lcd_str lcd_str `(v  1 e 1 0 ]
+{
+"154
+[v lcd_str@i i `uc  1 a 1 6 ]
+"152
+[v lcd_str@str str `*.25Cuc  1 p 2 2 ]
+"161
+} 0
+"133
+[v _lcd_init lcd_init `(v  1 e 1 0 ]
+{
+"150
+} 0
+"72
+[v _delay delay `(v  1 e 1 0 ]
+{
+"74
+[v delay@i i `ui  1 a 2 2 ]
+"75
+[v delay@j j `uc  1 a 1 4 ]
+"72
+[v delay@ms ms `ui  1 p 2 0 ]
+"89
+} 0
+"163
+[v _lcd_custom_char lcd_custom_char `(v  1 e 1 0 ]
+{
+"164
+[v lcd_custom_char@i i `ui  1 a 2 5 ]
+"163
+[v lcd_custom_char@Pattern Pattern `*.39uc  1 p 2 2 ]
+[v lcd_custom_char@Location Location `Cuc  1 p 1 4 ]
+"169
+} 0
+"122
+[v _lcd_dat lcd_dat `(v  1 e 1 0 ]
+{
+[v lcd_dat@val val `uc  1 a 1 wreg ]
+[v lcd_dat@val val `uc  1 a 1 wreg ]
+"124
+[v lcd_dat@val val `uc  1 a 1 1 ]
+"131
+} 0
+"111
+[v _lcd_cmd lcd_cmd `(v  1 e 1 0 ]
+{
+[v lcd_cmd@val val `uc  1 a 1 wreg ]
+[v lcd_cmd@val val `uc  1 a 1 wreg ]
+"113
+[v lcd_cmd@val val `uc  1 a 1 1 ]
+"120
+} 0
+"106
+[v _lcd_wr lcd_wr `(v  1 e 1 0 ]
+{
+[v lcd_wr@val val `uc  1 a 1 wreg ]
+[v lcd_wr@val val `uc  1 a 1 wreg ]
+"108
+[v lcd_wr@val val `uc  1 a 1 0 ]
+"109
+} 0

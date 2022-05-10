@@ -29,7 +29,7 @@
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "91 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\Umul64.c
 [v ___omul __omul `(uo  1 e 8 0 ]
-"60 C:\Users\Szymon\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie_zad2.X\main.c
+"60 C:\Users\szymo\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie_zad2.X\main.c
 [v _delay delay `(v  1 e 1 0 ]
 "79
 [v _adc adc `(ui  1 e 2 0 ]
@@ -128,7 +128,7 @@
 [v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
 "4663
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
-"58 C:\Users\Szymon\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie_zad2.X\main.c
+"58 C:\Users\szymo\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie_zad2.X\main.c
 [v _direction direction `i  1 e 2 0 ]
 "137
 [v _main main `(v  1 e 1 0 ]
