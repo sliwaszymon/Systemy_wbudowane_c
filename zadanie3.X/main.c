@@ -231,7 +231,7 @@ void main(void) {
        lcd_cmd(0xCE);
        lcd_dat(4);
        
-       delay(1000);
+       delay(2000);
        lcd_cmd(L_CLR);
        lcd_cmd(L_L1);
        lcd_str("  Gul!          ");
@@ -313,7 +313,7 @@ void main(void) {
        lcd_cmd(L_L1);
        lcd_str("  WPADAJ DO NAS ");
        lcd_cmd(L_L2);
-       lcd_str("   POROB SIE!   ");
+       lcd_str("   NAPIJ SIE!   ");
        lcd_cmd(0xC1);
        lcd_dat(3);
        lcd_cmd(0xCE);

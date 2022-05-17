@@ -5,9 +5,9 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.36\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\zadanie3.X.production.sym \
   --cmf=dist/default/production\zadanie3.X.production.cmf -z -Q18F4620 \
-  -oC:\Users\szymo\AppData\Local\Temp\xcAsa04.4 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\Szymon\AppData\Local\Temp\xcAsdko.4 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/zadanie3.X.production.map \
-  --md=C:\Users\szymo\AppData\Local\Temp\xcAsa04.dat -E1 -ver=XC8 Compiler \
+  --md=C:\Users\Szymon\AppData\Local\Temp\xcAsdko.dat -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh \
   -ASMALLCONST=01000h-010FFhx240 -AMEDIUMCONST=01000h-0FFFFh \
   -ACOMRAM=01h-07Fh -AABS1=00h-0F7Fh -ABIGRAM=01h-0F7Fh \
@@ -26,7 +26,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\szymo\AppData\Local\Temp\xcAsa04.o \
+  C:\Users\Szymon\AppData\Local\Temp\xcAsdko.o \
   dist/default/production\zadanie3.X.production.o 
 
 Object code version is 3.11
@@ -36,7 +36,7 @@ Machine type is 18F4620
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\szymo\AppData\Local\Temp\xcAsa04.o
+C:\Users\Szymon\AppData\Local\Temp\xcAsdko.o
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0

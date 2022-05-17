@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.36 build 20220127204148 
-                                                                                               Tue May 10 11:04:42 2022
+                                                                                               Tue May 17 10:20:15 2022
 
 Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1 
      1                           	processor	18F4620
@@ -227,11 +227,11 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    213  00FF11  20                 	db	32
    214  00FF12  20                 	db	32
    215  00FF13  20                 	db	32
-   216  00FF14  50                 	db	80	;'P'
-   217  00FF15  4F                 	db	79	;'O'
-   218  00FF16  52                 	db	82	;'R'
-   219  00FF17  4F                 	db	79	;'O'
-   220  00FF18  42                 	db	66	;'B'
+   216  00FF14  4E                 	db	78	;'N'
+   217  00FF15  41                 	db	65	;'A'
+   218  00FF16  50                 	db	80	;'P'
+   219  00FF17  49                 	db	73	;'I'
+   220  00FF18  4A                 	db	74	;'J'
    221  00FF19  20                 	db	32
    222  00FF1A  53                 	db	83	;'S'
    223  00FF1B  49                 	db	73	;'I'
@@ -701,7 +701,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    682  00FA62  0E01               	movlw	1
    683  00FA64  EC45  F07C         	call	_lcd_cmd
    684  00FA68                     
-   685                           ;main.c: 187:     unsigned char full_bottle[]= {0x4,0x4,0xe,0xe,0xe,0xe,0xe,0xe};
+   685                           ;main.c: 187:     unsigned char full_bottle[] = {0x4,0x4,0xe,0xe,0xe,0xe,0xe,0xe};
    686  00FA68  EE20  F060         	lfsr	2,main@F2494
    687  00FA6C  EE10  F008         	lfsr	1,main@full_bottle
    688  00FA70  0E07               	movlw	7
@@ -710,7 +710,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    691  00FA76  06E8               	decf	wreg,f,c
    692  00FA78  E2FC               	bc	u161
    693  00FA7A                     
-   694                           ;main.c: 188:     unsigned char half_bottle[]= {0x4,0x4,0xe,0xa,0xa,0xe,0xe,0xe};
+   694                           ;main.c: 188:     unsigned char half_bottle[] = {0x4,0x4,0xe,0xa,0xa,0xe,0xe,0xe};
    695  00FA7A  EE20  F058         	lfsr	2,main@F2496
    696  00FA7E  EE10  F010         	lfsr	1,main@half_bottle
    697  00FA82  0E07               	movlw	7
@@ -719,7 +719,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    700  00FA88  06E8               	decf	wreg,f,c
    701  00FA8A  E2FC               	bc	u171
    702  00FA8C                     
-   703                           ;main.c: 189:     unsigned char empty_bottle[]= {0x4,0x4,0xe,0xa,0xa,0xa,0xa,0xe};
+   703                           ;main.c: 189:     unsigned char empty_bottle[] = {0x4,0x4,0xe,0xa,0xa,0xa,0xa,0xe};
    704  00FA8C  EE20  F050         	lfsr	2,main@F2498
    705  00FA90  EE10  F018         	lfsr	1,main@empty_bottle
    706  00FA94  0E07               	movlw	7
@@ -728,7 +728,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    709  00FA9A  06E8               	decf	wreg,f,c
    710  00FA9C  E2FC               	bc	u181
    711  00FA9E                     
-   712                           ;main.c: 190:     unsigned char smile[]= {0x0,0xa,0xa,0xa,0x0,0x11,0xe,0x0};
+   712                           ;main.c: 190:     unsigned char smile[] = {0x0,0xa,0xa,0xa,0x0,0x11,0xe,0x0};
    713  00FA9E  EE20  F048         	lfsr	2,main@F2500
    714  00FAA2  EE10  F020         	lfsr	1,main@smile
    715  00FAA6  0E07               	movlw	7
@@ -755,7 +755,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    736  00FAD0  06E8               	decf	wreg,f,c
    737  00FAD2  E2FC               	bc	u211
    738  00FAD4                     
-   739                           ;main.c: 193:     lcd_custom_char(full_bottle, 0);
+   739                           ;main.c: 194:     lcd_custom_char(full_bottle, 0);
    740  00FAD4  0E08               	movlw	low main@full_bottle
    741  00FAD6  6E03               	movwf	lcd_custom_char@Pattern^0,c
    742  00FAD8  0E00               	movlw	high main@full_bottle
@@ -764,7 +764,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    745  00FADE  6E05               	movwf	lcd_custom_char@Location^0,c
    746  00FAE0  EC84  F07C         	call	_lcd_custom_char	;wreg free
    747  00FAE4                     
-   748                           ;main.c: 194:     lcd_custom_char(half_bottle, 1);
+   748                           ;main.c: 195:     lcd_custom_char(half_bottle, 1);
    749  00FAE4  0E10               	movlw	low main@half_bottle
    750  00FAE6  6E03               	movwf	lcd_custom_char@Pattern^0,c
    751  00FAE8  0E00               	movlw	high main@half_bottle
@@ -773,7 +773,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    754  00FAEE  6E05               	movwf	lcd_custom_char@Location^0,c
    755  00FAF0  EC84  F07C         	call	_lcd_custom_char	;wreg free
    756  00FAF4                     
-   757                           ;main.c: 195:     lcd_custom_char(empty_bottle, 2);
+   757                           ;main.c: 196:     lcd_custom_char(empty_bottle, 2);
    758  00FAF4  0E18               	movlw	low main@empty_bottle
    759  00FAF6  6E03               	movwf	lcd_custom_char@Pattern^0,c
    760  00FAF8  0E00               	movlw	high main@empty_bottle
@@ -782,7 +782,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    763  00FAFE  6E05               	movwf	lcd_custom_char@Location^0,c
    764  00FB00  EC84  F07C         	call	_lcd_custom_char	;wreg free
    765  00FB04                     
-   766                           ;main.c: 196:     lcd_custom_char(smile, 3);
+   766                           ;main.c: 197:     lcd_custom_char(smile, 3);
    767  00FB04  0E20               	movlw	low main@smile
    768  00FB06  6E03               	movwf	lcd_custom_char@Pattern^0,c
    769  00FB08  0E00               	movlw	high main@smile
@@ -791,7 +791,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    772  00FB0E  6E05               	movwf	lcd_custom_char@Location^0,c
    773  00FB10  EC84  F07C         	call	_lcd_custom_char	;wreg free
    774  00FB14                     
-   775                           ;main.c: 197:     lcd_custom_char(sad, 4);
+   775                           ;main.c: 198:     lcd_custom_char(sad, 4);
    776  00FB14  0E28               	movlw	low main@sad
    777  00FB16  6E03               	movwf	lcd_custom_char@Pattern^0,c
    778  00FB18  0E00               	movlw	high main@sad
@@ -800,7 +800,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    781  00FB1E  6E05               	movwf	lcd_custom_char@Location^0,c
    782  00FB20  EC84  F07C         	call	_lcd_custom_char	;wreg free
    783  00FB24                     
-   784                           ;main.c: 198:     lcd_custom_char(ciapki, 5);
+   784                           ;main.c: 199:     lcd_custom_char(ciapki, 5);
    785  00FB24  0E30               	movlw	low main@ciapki
    786  00FB26  6E03               	movwf	lcd_custom_char@Pattern^0,c
    787  00FB28  0E00               	movlw	high main@ciapki
@@ -943,10 +943,10 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
    924  00FC00  0E04               	movlw	4
    925  00FC02  EC4E  F07C         	call	_lcd_dat
    926  00FC06                     
-   927                           ;main.c: 234:        delay(1000);
-   928  00FC06  0E03               	movlw	3
+   927                           ;main.c: 234:        delay(2000);
+   928  00FC06  0E07               	movlw	7
    929  00FC08  6E02               	movwf	(delay@ms+1)^0,c
-   930  00FC0A  0EE8               	movlw	232
+   930  00FC0A  0ED0               	movlw	208
    931  00FC0C  6E01               	movwf	delay@ms^0,c
    932  00FC0E  ECA5  F07C         	call	_delay	;wreg free
    933  00FC12                     
@@ -1308,7 +1308,7 @@ Microchip MPLAB XC8 C Compiler v2.36 (Free license) build 20220127204148 Og1
   1289  00FE40  0EC0               	movlw	192
   1290  00FE42  EC45  F07C         	call	_lcd_cmd
   1291  00FE46                     
-  1292                           ;main.c: 316:        lcd_str("   POROB SIE!   ");
+  1292                           ;main.c: 316:        lcd_str("   NAPIJ SIE!   ");
   1293  00FE46  0E11               	movlw	low STR_16
   1294  00FE48  6E03               	movwf	lcd_str@str^0,c
   1295  00FE4A  0EFF               	movlw	high STR_16
@@ -2414,7 +2414,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.36 build 20220127204148 
-Symbol Table                                                                                   Tue May 10 11:04:42 2022
+Symbol Table                                                                                   Tue May 17 10:20:15 2022
 
  lcd_custom_char@Pattern 0003  lcd_custom_char@Location 0005                       l33 F95A  
                      l50 F888                       l36 F990                       l53 F89A  
