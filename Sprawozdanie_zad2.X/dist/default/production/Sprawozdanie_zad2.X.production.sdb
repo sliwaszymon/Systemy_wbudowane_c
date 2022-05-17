@@ -33,9 +33,9 @@
 [v _delay delay `(v  1 e 1 0 ]
 "79
 [v _adc adc `(ui  1 e 2 0 ]
-"97
+"96
 [v _alarm alarm `(v  1 e 1 0 ]
-"116
+"117
 [v _main main `(v  1 e 1 0 ]
 [s S99 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
@@ -126,19 +126,17 @@
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
 "94 C:\Users\Szymon\Documents\GitHub\Systemy_wbudowane_c\Sprawozdanie_zad2.X\main.c
 [v _isInformed isInformed `ui  1 e 2 0 ]
-"95
-[v _turnedOn turnedOn `ui  1 e 2 0 ]
-"116
+"117
 [v _main main `(v  1 e 1 0 ]
 {
-"157
+"151
 } 0
-"97
+"96
 [v _alarm alarm `(v  1 e 1 0 ]
 {
-"98
-[v alarm@i i `i  1 a 2 5 ]
-"114
+"97
+[v alarm@i i `i  1 a 2 14 ]
+"115
 } 0
 "60
 [v _delay delay `(v  1 e 1 0 ]

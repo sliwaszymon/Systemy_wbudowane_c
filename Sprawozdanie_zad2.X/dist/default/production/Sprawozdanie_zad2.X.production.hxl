@@ -10,11 +10,11 @@
 ### Memory Usage ###
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production\Sprawozdanie_zad2.X.production.hex)
-  FD3Ah - FFFFh		(dist/default/production\Sprawozdanie_zad2.X.production.hex)
+  FD32h - FFFFh		(dist/default/production\Sprawozdanie_zad2.X.production.hex)
   200000h - 200007h		(dist/default/production\Sprawozdanie_zad2.X.production.hex)
   300000h - 30000Dh		(dist/default/production\Sprawozdanie_zad2.X.production.hex)
  Unused ranges:
-  4h - FD39h
+  4h - FD31h
   10000h - 1FFFFFh
   200008h - 2FFFFFh
 
@@ -27,7 +27,7 @@
 ----------------------------------------------------------
 00000000 | H1 H1 H1 H1 -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
-0000FD30 | -- -- -- -- -- -- -- -- -- -- H1 H1 H1 H1 H1 H1
+0000FD30 | -- -- H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000FD40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000FD50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 0000FD60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1

@@ -92,14 +92,15 @@ unsigned int adc(unsigned char kanal)
 }
 
 unsigned int isInformed = 0;
-unsigned int turnedOn = 1;
 
 void alarm(){
     int i = 0;
     while (i < 10){
         if (PORTBbits.RB3 == 0) {
-            turnedOn = 0;
             PORTD = 0;
+            i = 0;
+        }
+        if (((unsigned int)adc(0)/10) < 51){
             i = 10;
         }
         if (i%2 != 0){
@@ -130,30 +131,29 @@ void main(void) {
     while(1)
     {
         if (PORTBbits.RB3 == 0) {
-            if (turnedOn == 0){
-                turnedOn = 1;
-            } else {
-                turnedOn = 0;
+            if (isInformed == 1){
+                isInformed = 0;
             }
         }
-        if (turnedOn == 1){
-            if (((unsigned int)adc(0)/10) >= 51){
-                if (isInformed == 0){
-                    alarm();
-                } else {
-                    PORTD = 255;
-                }
+        if (((unsigned int)adc(0)/10) >= 51){
+            if (isInformed == 0){
+                alarm();
             } else {
-                PORTD = 0;
-                isInformed = 0;
+                PORTD = 255;
             }
         } else {
             PORTD = 0;
             isInformed = 0;
-        } 
+        }
     }
     
     return;
 }
 
-//warto?ci na potencjometrze w zakresie oko?o (0, 1020)
+// wartosci na potencjometrze w zakresie okolo (0, 1020)
+
+// jak potencjometr przekroczy polowe uruchamia sie alarm
+// gdy potencjometr zmieni warto?? poni?ej po?owy w trakcie mrygania 
+// ostrzegawczego lub gdy swieca wszystkie ledy - stan wszystkich diod zmienia sie na LOW
+// w przypadku nacisniecia przycisku restartu podczas alarmu, 
+//diody zaczynaj? mruganie od poczatku
