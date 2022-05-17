@@ -159,15 +159,16 @@ void lcd_str(const char* str)
    i++;
  }  
 }
+char timer[] = " :           :  ";
 
-void lcd_custom_char(unsigned char *Pattern, const char Location){
-    unsigned int i;
-    lcd_cmd(0x40+(Location*8));
-    for (i=0; i<8; i++){
-        lcd_dat(Pattern[i]);
-    }
+void set_timer(int time_p0[], int time_p1[]){
+    timer[0] = time_p0[0] + '0';
+    timer[2] = time_p0[1] + '0';
+    timer[3] = time_p0[2] + '0';
+    timer[12] = time_p1[0] + '0';
+    timer[14] = time_p1[1] + '0';
+    timer[15] = time_p1[2] + '0';
 }
-
 void main(void) {
     
     //Inicjalizacja konwertera analogowo cyfrowego
@@ -184,152 +185,71 @@ void main(void) {
     lcd_init();
     lcd_cmd(L_CLR);
     
-    unsigned char full_bottle[] = {0x4,0x4,0xe,0xe,0xe,0xe,0xe,0xe}; 
-    unsigned char half_bottle[] = {0x4,0x4,0xe,0xa,0xa,0xe,0xe,0xe};
-    unsigned char empty_bottle[] = {0x4,0x4,0xe,0xa,0xa,0xa,0xa,0xe};
-    unsigned char smile[] = {0x0,0xa,0xa,0xa,0x0,0x11,0xe,0x0};
-    unsigned char sad[] = {0x0,0xa,0xa,0xa,0x0,0xe,0x11,0x0};
-    unsigned char ciapki[] = {0x1b,0x1b,0x1b,0x0,0x0,0x0,0x0,0x0};
+    unsigned int running = 0;
+    unsigned int turn = 0;
+    int time_p0[] = {1,0,0};
+    int time_p1[] = {1,0,0};
     
-    lcd_custom_char(full_bottle, 0);
-    lcd_custom_char(half_bottle, 1);
-    lcd_custom_char(empty_bottle, 2);
-    lcd_custom_char(smile, 3);
-    lcd_custom_char(sad, 4);
-    lcd_custom_char(ciapki, 5);
+    set_timer(time_p0, time_p1);
+    
+    lcd_cmd(L_L1);
+    lcd_str("GRACZ 1  GRACZ 2");
+    lcd_cmd(L_L2);
+    lcd_str(timer);
+    
+    
     
     while(1)
     {
-       delay(500);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("  Lubisz piwko? ");
-       lcd_cmd(0xC5);
-       lcd_dat(0);
-       lcd_cmd(0xC7);
-       lcd_dat(3);
-       lcd_cmd(0xC9);
-       lcd_dat(0);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("   My rowniez!  ");
-       lcd_cmd(0xC5);
-       lcd_dat(3);
-       lcd_cmd(0xC7);
-       lcd_dat(3);
-       lcd_cmd(0xC9);
-       lcd_dat(3);
-        
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("  Ale za szybko ");
-       lcd_cmd(L_L2);
-       lcd_str("  sie konczy?   ");
-       lcd_cmd(0xCE);
-       lcd_dat(4);
-       
+        if (running == 0){
+            if (turn == 0){
+                if (time_p0[2] == 0){
+                    if (time_p0[1] == 0){
+                        if (time_p0[0] == 0){
+                            lcd_cmd(L_CLR);
+                            lcd_cmd(L_L1);
+                            lcd_str("Gracz 1 przegral");
+                            lcd_cmd(L_L2);
+                            lcd_str("koniec czasu!   ");
+                            running = 0;
+                        } else {
+                            time_p0[0] = time_p0[0] - 1;
+                            time_p0[1] = 5;
+                            time_p0[2] = 9;
+                        }
+                    } else {
+                        time_p0[1] = time_p0[1] - 1;
+                    }
+                } else {
+                    time_p0[2] = time_p0[2] - 1;
+                }
+            } else {
+                if (time_p1[2] == 0){
+                    if (time_p1[1] == 0){
+                        if (time_p1[0] == 0){
+                            lcd_cmd(L_CLR);
+                            lcd_cmd(L_L1);
+                            lcd_str("Gracz 2 przegral");
+                            lcd_cmd(L_L2);
+                            lcd_str("koniec czasu!   ");
+                            running = 0;
+                        } else {
+                            time_p1[0] = time_p1[0] - 1;
+                            time_p1[1] = 5;
+                            time_p1[2] = 9;
+                        }
+                    } else {
+                        time_p1[1] = time_p1[1] - 1;
+                    }
+                } else {
+                    time_p1[2] = time_p1[2] - 1;
+                }
+            }
+        } else {
+            
+        }
        delay(1000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("  Gul!          ");
-       lcd_cmd(0xC5);
-       lcd_dat(0);
-       lcd_cmd(0xC7);
-       lcd_dat(3);
-       lcd_cmd(0xC9);
-       lcd_dat(0);
-       delay(1000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("      Gul!      ");
-       lcd_cmd(0xC5);
-       lcd_dat(1);
-       lcd_cmd(0xC7);
-       lcd_dat(3);
-       lcd_cmd(0xC9);
-       lcd_dat(1);
-       delay(1000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("          Gul!  ");
-       lcd_cmd(0xC5);
-       lcd_dat(2);
-       lcd_cmd(0xC7);
-       lcd_dat(4);
-       lcd_cmd(0xC9);
-       lcd_dat(2);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("   Jest po 22?  ");
-       lcd_cmd(0xC5);
-       lcd_dat(4);
-       lcd_cmd(0xC7);
-       lcd_dat(4);
-       lcd_cmd(0xC9); 
-       lcd_dat(4);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("Dla nas to nie  ");
-       lcd_cmd(L_L2);
-       lcd_str("problem!        ");
-       lcd_cmd(0xCA);
-       lcd_dat(3);
-       lcd_cmd(0xCB);
-       lcd_dat(0);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("Omijamy lukiem  ");
-       lcd_cmd(L_L2);
-       lcd_str("prohibicje!     ");
-       lcd_cmd(0xCD);
-       lcd_dat(0);
-       lcd_cmd(0xCE);
-       lcd_dat(3);
-       lcd_cmd(0xCF);
-       lcd_dat(0);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("GDY JEST WEEKEND");
-       lcd_cmd(L_L2);
-       lcd_str("   LUB CI ZLE   ");
-       lcd_cmd(0xC1);
-       lcd_dat(4);
-       lcd_cmd(0xCE);
-       lcd_dat(4);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str("  WPADAJ DO NAS ");
-       lcd_cmd(L_L2);
-       lcd_str("   POROB SIE!   ");
-       lcd_cmd(0xC1);
-       lcd_dat(3);
-       lcd_cmd(0xCE);
-       lcd_dat(3);
-       
-       delay(2000);
-       lcd_cmd(L_CLR);
-       lcd_cmd(L_L1);
-       lcd_str(" Z KODEM  SYSWB ");
-       lcd_cmd(0x89);
-       lcd_dat(5);
-       lcd_cmd(0x8F);
-       lcd_dat(5);
-       lcd_cmd(L_L2);
-       lcd_str("4 PROCENT ZNIZKI");
-       delay(5000);       
+       set_timer(time_p0, time_p1);
     }
     
     return;
