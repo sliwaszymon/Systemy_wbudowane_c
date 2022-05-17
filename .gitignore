@@ -1,1 +1,6 @@
 *.exe
+**/build/**
+**/dist/default/production/*
+!**/dist/default/production/*.hex
+**/nbproject/**
+**/Makefile
