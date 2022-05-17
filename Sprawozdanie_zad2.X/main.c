@@ -91,47 +91,26 @@ unsigned int adc(unsigned char kanal)
    return ((((unsigned int)ADRESH)<<2)|(ADRESL>>6));
 }
 
-void better_delay(unsigned int value) {
-    if (value < 51) { 
-        delay(0);
-    } else if (value >= 55 && value < 102) {
-        delay(200);
-    } else if (value >= 102 && value < 153) {
-        delay(400);
-    } else if (value >= 153 && value < 204) {
-        delay(800);
-    } else {
-        delay(1600);
+unsigned int isInformed = 0;
+unsigned int turnedOn = 1;
+
+void alarm(){
+    int i = 0;
+    while (i < 10){
+        if (PORTBbits.RB3 == 0) {
+            turnedOn = 0;
+            PORTD = 0;
+            i = 10;
+        }
+        if (i%2 != 0){
+            PORTD = 1;
+        } else {
+            PORTD = 0;
+        }
+        delay(500);
+        i++;
     }
-}
-
-unsigned char bin_up(unsigned char display) {
-    better_delay(((unsigned int)adc(1)/10));
-    return (display + 1);
-}
-
-unsigned char snake(unsigned char display){
-    if (display < 7) {
-		display = (display << 1) ^ 1;
-	} else {
-		if (direction == 1) {
-            if (display == 224) {
-				direction = 0;
-				display = display >> 1;
-            } else {
-				display = display << 1; 	
-			}
-		} else {
-			if (display == 7) {
-				direction = 1;
-				display = display << 1;
-			} else {
-				display = display >>1;
-			}
-		}
-	}
-    better_delay(((unsigned int)adc(1)/10));
-    return display;
+    isInformed = 1;
 }
 
 void main(void) {
@@ -147,28 +126,31 @@ void main(void) {
     TRISD=0x00;
     TRISE=0x00;
     
-    unsigned char display = 0;
-    unsigned int tmp = 0;
     
     while(1)
     {
-        PORTD = display; //Wyswietlenie na diodach rejestru D
-        unsigned int task = 1;
-        delay(100);
         if (PORTBbits.RB3 == 0) {
-            task = 1;
-            display = 0;
-        } else if (PORTBbits.RB4 == 0) {
-            task = 2;
-            display = 0;
-            direction = 1;
+            if (turnedOn == 0){
+                turnedOn = 1;
+            } else {
+                turnedOn = 0;
+            }
         }
-        
-        if (task == 1) {
-            display = bin_up(display);
-        } else if (task == 2) {
-            display = snake(display);
-        }
+        if (turnedOn == 1){
+            if (((unsigned int)adc(0)/10) >= 51){
+                if (isInformed == 0){
+                    alarm();
+                } else {
+                    PORTD = 255;
+                }
+            } else {
+                PORTD = 0;
+                isInformed = 0;
+            }
+        } else {
+            PORTD = 0;
+            isInformed = 0;
+        } 
     }
     
     return;

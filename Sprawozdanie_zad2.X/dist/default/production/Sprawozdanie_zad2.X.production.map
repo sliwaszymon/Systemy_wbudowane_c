@@ -5,10 +5,10 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.36\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\Sprawozdanie_zad2.X.production.sym \
   --cmf=dist/default/production\Sprawozdanie_zad2.X.production.cmf -z \
-  -Q18F4620 -oC:\Users\szymo\AppData\Local\Temp\xcAsh9s.4 \
+  -Q18F4620 -oC:\Users\Szymon\AppData\Local\Temp\xcAs8d0.4 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/Sprawozdanie_zad2.X.production.map \
-  --md=C:\Users\szymo\AppData\Local\Temp\xcAsh9s.dat -E1 -ver=XC8 Compiler \
+  --md=C:\Users\Szymon\AppData\Local\Temp\xcAs8d0.dat -E1 -ver=XC8 Compiler \
   --acfsm=1493 -ACODE=00h-0FFFFh -ACONST=00h-0FFFFh \
   -ASMALLCONST=01000h-010FFhx240 -AMEDIUMCONST=01000h-0FFFFh \
   -ACOMRAM=01h-07Fh -AABS1=00h-0F7Fh -ABIGRAM=01h-0F7Fh \
@@ -27,7 +27,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\szymo\AppData\Local\Temp\xcAsh9s.o \
+  C:\Users\Szymon\AppData\Local\Temp\xcAs8d0.o \
   dist/default/production\Sprawozdanie_zad2.X.production.o 
 
 Object code version is 3.11
@@ -37,37 +37,34 @@ Machine type is 18F4620
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\szymo\AppData\Local\Temp\xcAsh9s.o
+C:\Users\Szymon\AppData\Local\Temp\xcAs8d0.o
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
                 init                                  0        0        4        0       0
 dist/default/production\Sprawozdanie_zad2.X.production.o
                 idloc                            200000   200000        8        0       5
                 config                           300000   300000        E        0       4
-                text6                              FCB4     FCB4       74     7E5A       0
-                text5                              FD28     FD28       90     7E94       0
-                text4                              FC6C     FC6C       48     7E36       0
-                text3                              FF18     FF18       E8     7F8C       0
-                text2                              FC40     FC40       2C     7E20       0
-                text1                              FDB8     FDB8       A2     7EDC       0
-                text0                              FE5A     FE5A       BE     7F2D       0
-                cstackCOMRAM                          1        1       14        1       1
-                dataCOMRAM                           15       15        2        1       1
-                cinit                              FC1E     FC1E       22     7E0F       0
-                idataCOMRAM                        FC1C     FC1C        2     FC1C       0
+                text4                              FDB4     FDB4       74     7EDA       0
+                text3                              FEA6     FEA6       90     7F53       0
+                text2                              FD6C     FD6C       48     7EB6       0
+                text1                              FE28     FE28       7E     7F14       0
+                text0                              FF36     FF36       CA     7F9B       0
+                cstackCOMRAM                          1        1        E        1       1
+                dataCOMRAM                            F        F        4        1       1
+                bssCOMRAM                            13       13        2        1       1
+                cinit                              FD3E     FD3E       2E     7E9F       0
+                idataCOMRAM                        FD3A     FD3A        4     FD3A       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CODE           
                 init                                  0        0        4         0
-                text6                              FCB4     FCB4       74         0
-                text5                              FD28     FD28       90         0
-                text4                              FC6C     FC6C       48         0
-                text3                              FF18     FF18       E8         0
-                text2                              FC40     FC40       2C         0
-                text1                              FDB8     FDB8       A2         0
-                text0                              FE5A     FE5A       BE         0
-                cinit                              FC1E     FC1E       22         0
-                idataCOMRAM                        FC1C     FC1C        2         0
+                text4                              FDB4     FDB4       74         0
+                text3                              FEA6     FEA6       90         0
+                text2                              FD6C     FD6C       48         0
+                text1                              FE28     FE28       7E         0
+                text0                              FF36     FF36       CA         0
+                cinit                              FD3E     FD3E       2E         0
+                idataCOMRAM                        FD3A     FD3A        4         0
 
         CLASS   CONST          
 
@@ -76,8 +73,9 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                cstackCOMRAM                          1        1       14         1
-                dataCOMRAM                           15       15        2         1
+                cstackCOMRAM                          1        1        E         1
+                dataCOMRAM                            F        F        4         1
+                bssCOMRAM                            13       13        2         1
 
         CLASS   ABS1           
 
@@ -140,16 +138,14 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                cstackCOMRAM                   000001  000016  000017         1       1  COMRAM  
-                idataCOMRAM                    00FC1C  000002  00FC1E      FC1C       0  CODE    
-                cinit                          00FC1E  000022  00FC40      7E0F       0  CODE    
-                text2                          00FC40  00002C  00FC6C      7E20       0  CODE    
-                text4                          00FC6C  000048  00FCB4      7E36       0  CODE    
-                text6                          00FCB4  000074  00FD28      7E5A       0  CODE    
-                text5                          00FD28  000090  00FDB8      7E94       0  CODE    
-                text1                          00FDB8  0000A2  00FE5A      7EDC       0  CODE    
-                text0                          00FE5A  0000BE  00FF18      7F2D       0  CODE    
-                text3                          00FF18  0000E8  010000      7F8C       0  CODE    
+                cstackCOMRAM                   000001  000014  000015         1       1  COMRAM  
+                idataCOMRAM                    00FD3A  000004  00FD3E      FD3A       0  CODE    
+                cinit                          00FD3E  00002E  00FD6C      7E9F       0  CODE    
+                text2                          00FD6C  000048  00FDB4      7EB6       0  CODE    
+                text4                          00FDB4  000074  00FE28      7EDA       0  CODE    
+                text1                          00FE28  00007E  00FEA6      7F14       0  CODE    
+                text3                          00FEA6  000090  00FF36      7F53       0  CODE    
+                text0                          00FF36  0000CA  010000      7F9B       0  CODE    
 
 
 UNUSED ADDRESS RANGES
@@ -171,16 +167,16 @@ UNUSED ADDRESS RANGES
         BANK7            000700-0007FF              100
         BANK8            000800-0008FF              100
         BANK9            000900-0009FF              100
-        BIGRAM           000017-000F7F              F69
+        BIGRAM           000015-000F7F              F6B
         BIGSFR           000F80-000FFF               80
-        CODE             000004-00FC1B             FC18
-        COMRAM           000017-00007F               69
-        CONST            000004-00FC1B             FC18
+        CODE             000004-00FD39             FD36
+        COMRAM           000015-00007F               6B
+        CONST            000004-00FD39             FD36
         EEDATA           F00000-F003FF              400
-        MEDIUMCONST      001000-00FC1B             EC1C
+        MEDIUMCONST      001000-00FD39             ED3A
         RAM              000080-000F7F              100
         SFR              000F80-000FFF               80
-        SMALLCONST       001000-00FC1B              100
+        SMALLCONST       001000-00FD39              100
 
                                   Symbol Table
 
@@ -222,6 +218,7 @@ __Hbigdata               bigdata      000000
 __Hbigram                bigram       000000
 __Hbigsfr                bigsfr       000000
 __Hbss                   bss          000000
+__HbssCOMRAM             bssCOMRAM    000000
 __Hcinit                 cinit        000000
 __Hclrtext               clrtext      000000
 __Hcomram                comram       000000
@@ -263,7 +260,7 @@ __Hrparam                rparam       000000
 __Hsfr                   sfr          000000
 __Hsmallconst            smallconst   000000
 __Hspace_0               (abs)        010000
-__Hspace_1               (abs)        000017
+__Hspace_1               (abs)        000015
 __Hspace_2               (abs)        000000
 __Hspace_4               (abs)        60000E
 __Hstack                 stack        000000
@@ -275,8 +272,6 @@ __Htext1                 text1        000000
 __Htext2                 text2        000000
 __Htext3                 text3        000000
 __Htext4                 text4        000000
-__Htext5                 text5        000000
-__Htext6                 text6        000000
 __LRAM                   (abs)        000001
 __Labs1                  abs1         000000
 __Lbank0                 bank0        000000
@@ -300,6 +295,7 @@ __Lbigdata               bigdata      000000
 __Lbigram                bigram       000000
 __Lbigsfr                bigsfr       000000
 __Lbss                   bss          000000
+__LbssCOMRAM             bssCOMRAM    000000
 __Lcinit                 cinit        000000
 __Lclrtext               clrtext      000000
 __Lcomram                comram       000000
@@ -353,17 +349,15 @@ __Ltext1                 text1        000000
 __Ltext2                 text2        000000
 __Ltext3                 text3        000000
 __Ltext4                 text4        000000
-__Ltext5                 text5        000000
-__Ltext6                 text6        000000
 __S0                     (abs)        010000
-__S1                     (abs)        000017
+__S1                     (abs)        000015
 __S4                     (abs)        000000
 __S5                     (abs)        000000
 ___heap_hi               (abs)        000000
 ___heap_lo               (abs)        000000
 ___inthi_sp              stack        000000
 ___intlo_sp              stack        000000
-___lwdiv                 text6        00FCB4
+___lwdiv                 text4        00FDB4
 ___lwdiv@counter         cstackCOMRAM 00000E
 ___lwdiv@dividend        cstackCOMRAM 000008
 ___lwdiv@divisor         cstackCOMRAM 00000A
@@ -373,78 +367,69 @@ ___rparam_used           (abs)        000001
 ___sp                    stack        000000
 __accesstop              (abs)        000080
 __activetblptr           (abs)        000002
-__end_of___lwdiv         text6        00FD28
-__end_of__initialization cinit        00FC36
-__end_of_adc             text5        00FDB8
-__end_of_better_delay    text3        010000
-__end_of_bin_up          text2        00FC6C
-__end_of_delay           text4        00FCB4
-__end_of_main            text0        00FF18
-__end_of_snake           text1        00FE5A
-__initialization         cinit        00FC1E
+__end_of___lwdiv         text4        00FE28
+__end_of__initialization cinit        00FD62
+__end_of_adc             text3        00FF36
+__end_of_alarm           text1        00FEA6
+__end_of_delay           text2        00FDB4
+__end_of_main            text0        010000
+__initialization         cinit        00FD3E
 __mediumconst            mediumconst  000000
-__pcinit                 cinit        00FC1E
+__pbssCOMRAM             bssCOMRAM    000013
+__pcinit                 cinit        00FD3E
 __pcstackCOMRAM          cstackCOMRAM 000001
-__pdataCOMRAM            dataCOMRAM   000015
-__pidataCOMRAM           idataCOMRAM  00FC1C
-__ptext0                 text0        00FE5A
-__ptext1                 text1        00FDB8
-__ptext2                 text2        00FC40
-__ptext3                 text3        00FF18
-__ptext4                 text4        00FC6C
-__ptext5                 text5        00FD28
-__ptext6                 text6        00FCB4
+__pdataCOMRAM            dataCOMRAM   00000F
+__pidataCOMRAM           idataCOMRAM  00FD3A
+__ptext0                 text0        00FF36
+__ptext1                 text1        00FE28
+__ptext2                 text2        00FD6C
+__ptext3                 text3        00FEA6
+__ptext4                 text4        00FDB4
 __ramtop                 ramtop       001000
 __smallconst             smallconst   000000
-_adc                     text5        00FD28
-_better_delay            text3        00FF18
-_bin_up                  text2        00FC40
-_delay                   text4        00FC6C
-_direction               dataCOMRAM   000015
-_main                    text0        00FE5A
-_snake                   text1        00FDB8
+_adc                     text3        00FEA6
+_alarm                   text1        00FE28
+_delay                   text2        00FD6C
+_direction               dataCOMRAM   000011
+_isInformed              bssCOMRAM    000013
+_main                    text0        00FF36
+_turnedOn                dataCOMRAM   00000F
 adc@kanal                cstackCOMRAM 000007
-better_delay@value       cstackCOMRAM 00000F
-bin_up@display           cstackCOMRAM 000011
+alarm@i                  cstackCOMRAM 000006
 delay@i                  cstackCOMRAM 000003
 delay@j                  cstackCOMRAM 000005
 delay@ms                 cstackCOMRAM 000001
-end_of_initialization    cinit        00FC36
+end_of_initialization    cinit        00FD62
 intlevel0                text         000000
 intlevel1                text         000000
 intlevel2                text         000000
 intlevel3                text         000000
 isa$std                  (abs)        000001
 isa$xinst                (abs)        000000
-main@display             cstackCOMRAM 000014
-main@task                cstackCOMRAM 000012
-snake@display            cstackCOMRAM 000011
 stackhi                  (abs)        000000
 stacklo                  (abs)        000000
 start                    init         000000
-start_initialization     cinit        00FC1E
+start_initialization     cinit        00FD3E
 
 
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\lwdiv.c
-		___lwdiv       		CODE           	FCB4	0000	116
+		___lwdiv       		CODE           	FDB4	0000	116
 
 C:\Program Files\Microchip\xc8\v2.36\pic\sources\c99\common\lwdiv.c estimated size: 116
 
 shared
-		__initialization		CODE           	FC1E	0000	24
+		__initialization		CODE           	FD3E	0000	36
 
-shared estimated size: 24
+shared estimated size: 36
 
 main.c
-		_delay         		CODE           	FC6C	0000	72
-		_better_delay  		CODE           	FF18	0000	232
-		_main          		CODE           	FE5A	0000	190
-		_snake         		CODE           	FDB8	0000	162
-		_adc           		CODE           	FD28	0000	144
-		_bin_up        		CODE           	FC40	0000	44
+		_delay         		CODE           	FD6C	0000	72
+		_alarm         		CODE           	FE28	0000	126
+		_main          		CODE           	FF36	0000	202
+		_adc           		CODE           	FEA6	0000	144
 
-main.c estimated size: 844
+main.c estimated size: 544
 
