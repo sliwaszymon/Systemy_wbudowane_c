@@ -160,8 +160,8 @@ void lcd_str(const char* str)
  }  
 }
 
-unsigned int power[] = {2,0,0};
-unsigned int timer[] = {0,0,0,0};
+unsigned int power[2] = {2,0};
+unsigned int timer[4] = {0,0,0,0};
 
 void change_power(){
     if (power[0] == 2){
@@ -173,35 +173,85 @@ void change_power(){
     } else if (power[0] == 6){
         power[0] = 8;
     } else {
-        power[0] == 2;
+        power[0] = 2;
     }
 }
 
 void timer_add_minute(){
     timer[1] = timer[1] + 1;
     if (timer[1] > 9) {
+        timer[1] = 0;
         if (timer[0] < 6) {
             timer[0] = timer[0] + 1;
         } else {
-            timer[] = {6,0,0,0};
+            timer[0] = 6;
+            timer[1] = 0;
+            timer[2] = 0;
+            timer[3] = 0;
         }
     }
 }
 
 void timer_add_seconds(){
-    pass;
+    if (timer[2] < 6){
+        timer[2] = timer[2] + 1;
+    } else {
+        timer[2] = 0;
+        timer_add_minute();
+    }
+
 }
 
-void put_on_display(){
-    lcd_cmd(0x8c);
-    
-    lcd_cmd(0x8d);
-    lcd_cmd(0x8e);
-    
+void decreese_timer(){
+    if (timer[3] == 0){
+        if (timer[2] == 0){
+            if (timer[1] == 0){
+                if (timer[0] > 0){
+                    timer[0] = timer[0] - 1;
+                    timer[1] = 9;
+                    timer[2] = 5;
+                    timer[3] = 9;
+                }
+            } else {
+                timer[1] = timer[1] - 1;
+                timer[2] = 5;
+                timer[3] = 9;
+            }
+        } else {
+            timer[2] = timer[2] - 1;
+            timer[3] = 9;
+        }
+    } else {
+        timer[3] = timer[3] - 1;
+    }
 }
 
 char first_line[] = "MOC:        200W";
 char second_line[] = "CZAS:      00:00";
+
+
+void put_power_on_display(){
+    first_line[12] = power[0] + '0';
+    first_line[13] = power[1] + '0';
+}
+
+void put_time_on_display(){
+    second_line[11] = timer[0] + '0';
+    second_line[12] = timer[1] + '0';
+    second_line[14] = timer[2] + '0';
+    second_line[15] = timer[3] + '0';
+}
+
+void reset_display(){
+    power[0] = 2;
+    power[1] = 0;
+    timer[0] = 0;
+    timer[1] = 0;
+    timer[2] = 0;
+    timer[3] = 0;
+    put_power_on_display();
+    put_time_on_display();
+}
 
 void main(void) {
     
@@ -216,22 +266,64 @@ void main(void) {
     TRISD=0x00;
     TRISE=0x00;
     
+    unsigned int working = 0;
     
     lcd_init();
     lcd_cmd(L_CLR);
     lcd_cmd(L_L1);
-    lcd_str("MOC:        200W");
+    lcd_str(first_line);
     lcd_cmd(L_L2);
-    lcd_str("CZAS:      00:00");
-    
-    
+    lcd_str(second_line);
     
     while(1)
     {
        if (PORTBbits.RB5 == 0){
+           change_power();
+           put_power_on_display();
        }
+       if (PORTBbits.RB4 == 0){
+           timer_add_minute();
+           put_time_on_display();
+       }
+       if (PORTBbits.RB3 == 0){
+           timer_add_seconds();
+           put_time_on_display();
+       }
+       if (PORTBbits.RB2 == 0){
+           if (working == 1){
+               working = 0;
+           } else {
+               working = 1;
+           }
+       }
+       if (PORTBbits.RB1 == 0){
+           reset_display();
+       }
+       
+       if (working == 1){
+           if ((timer[0] == 0) && (timer[1] == 0) && (timer[2] == 0) && (timer[3] == 0)){
+                lcd_cmd(L_CLR);
+                lcd_cmd(L_L1);
+                lcd_str("  POSILEK JEST  ");
+                lcd_cmd(L_L2);
+                lcd_str("     GOWOTY!    ");
+                working = 0;
+                delay(5000);
+           } else {
+                decreese_timer();
+                put_time_on_display();
+                delay(1000);
+           }
+       } else {
+           delay(250);
+       }
+       
+       lcd_cmd(L_CLR);
+       lcd_cmd(L_L1);
+       lcd_str(first_line);
+       lcd_cmd(L_L2);
+       lcd_str(second_line);
     }
-    
     return;
 }
 
