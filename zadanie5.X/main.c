@@ -232,6 +232,16 @@ void decreese_timer2(){
     }
 }
 
+unsigned int turn = 1;
+void change_turn(){
+    if (PORTBbits.RB3 == 0){
+        turn = 2;
+    } 
+    if (PORTBbits.RB5 == 0) {
+        turn = 1;
+    }
+}
+
 void main(void) {
     
     //Inicjalizacja konwertera analogowo cyfrowego
@@ -253,8 +263,7 @@ void main(void) {
     lcd_str(timer);
     
     unsigned int running = 0;
-    unsigned int turn = 1;
-
+    
     while(1)
     {
         if (running == 0){
@@ -269,13 +278,13 @@ void main(void) {
                 turn = 1;
             }
             delay(200);
+            lcd_cmd(L_CLR);
+            lcd_cmd(L_L1);
+            lcd_str("GRACZ 1  GRACZ 2");
+            lcd_cmd(L_L2);
+            lcd_str(timer);
         } else {
-            if (PORTBbits.RB3 == 0){
-                turn = 2;
-            } 
-            if (PORTBbits.RB5 == 0) {
-                turn = 1;
-            }
+            change_turn();
             if (turn == 1){
                 if ((time1[0] == 0) && (time1[1] == 0) && (time1[2] == 0)){
                     lcd_cmd(L_CLR);
@@ -304,14 +313,28 @@ void main(void) {
                 }
             }
             put_time_on_display();
-            delay(1000);
+            lcd_cmd(L_CLR);
+            lcd_cmd(L_L1);
+            lcd_str("GRACZ 1  GRACZ 2");
+            lcd_cmd(L_L2);
+            lcd_str(timer);
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
+            delay(125);
+            change_turn();
         }
-        
-        lcd_cmd(L_CLR);
-        lcd_cmd(L_L1);
-        lcd_str("GRACZ 1  GRACZ 2");
-        lcd_cmd(L_L2);
-        lcd_str(timer);
     }
     
     return;
