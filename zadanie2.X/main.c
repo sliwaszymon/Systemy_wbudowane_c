@@ -135,7 +135,7 @@ void main(void) {
                 isInformed = 0;
             }
         }
-        if (((unsigned int)adc(0)/10) >= 51){
+        if (((unsigned int)adc(1)/10) >= 51){
             if (isInformed == 0){
                 alarm();
             } else {

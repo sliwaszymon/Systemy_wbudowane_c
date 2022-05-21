@@ -159,16 +159,79 @@ void lcd_str(const char* str)
    i++;
  }  
 }
-char timer[] = " :           :  ";
 
-void set_timer(int time_p0[], int time_p1[]){
-    timer[0] = time_p0[0] + '0';
-    timer[2] = time_p0[1] + '0';
-    timer[3] = time_p0[2] + '0';
-    timer[12] = time_p1[0] + '0';
-    timer[14] = time_p1[1] + '0';
-    timer[15] = time_p1[2] + '0';
+char timer[] = "1:00        1:00";
+unsigned int time1[] = {1,0,0};
+unsigned int time2[] = {1,0,0};
+
+void change_time(unsigned int value){
+    if (value < 34){
+        time1[0] = 1;
+        time1[1] = 0;
+        time1[2] = 0;
+        time2[0] = 1;
+        time2[1] = 0;
+        time2[2] = 0;
+    } else if ((value < 68) && (value >= 34)){
+        time1[0] = 3;
+        time1[1] = 0;
+        time1[2] = 0;
+        time2[0] = 3;
+        time2[1] = 0;
+        time2[2] = 0;
+    } else {
+        time1[0] = 5;
+        time1[1] = 0;
+        time1[2] = 0;
+        time2[0] = 5;
+        time2[1] = 0;
+        time2[2] = 0;
+    }
 }
+
+void put_time_on_display(){
+    timer[0] = time1[0] + '0';
+    timer[2] = time1[1] + '0';
+    timer[3] = time1[2] + '0';
+    timer[12] = time2[0] + '0';
+    timer[14] = time2[1] + '0';
+    timer[15] = time2[2] + '0';
+}
+
+void decreese_timer1(){
+    if (time1[2] == 0){
+        if (time1[1] == 0){
+            if (time1[0] > 0){
+                time1[0] = time1[0] - 1;
+                time1[1] = 5;
+                time1[2] = 9;
+            }
+        } else {
+            time1[1] = time1[1] - 1;
+            time1[2] = 9;
+        }
+    } else {
+        time1[2] = time1[2] - 1;
+    }
+}
+
+void decreese_timer2(){
+    if (time2[2] == 0){
+        if (time2[1] == 0){
+            if (time2[0] > 0){
+                time2[0] = time2[0] - 1;
+                time2[1] = 5;
+                time2[2] = 9;
+            }
+        } else {
+            time2[1] = time2[1] - 1;
+            time2[2] = 9;
+        }
+    } else {
+        time2[2] = time2[2] - 1;
+    }
+}
+
 void main(void) {
     
     //Inicjalizacja konwertera analogowo cyfrowego
@@ -184,72 +247,71 @@ void main(void) {
     
     lcd_init();
     lcd_cmd(L_CLR);
-    
-    unsigned int running = 0;
-    unsigned int turn = 0;
-    int time_p0[] = {1,0,0};
-    int time_p1[] = {1,0,0};
-    
-    set_timer(time_p0, time_p1);
-    
     lcd_cmd(L_L1);
     lcd_str("GRACZ 1  GRACZ 2");
     lcd_cmd(L_L2);
     lcd_str(timer);
     
-    
-    
+    unsigned int running = 0;
+    unsigned int turn = 1;
+
     while(1)
     {
         if (running == 0){
-            if (turn == 0){
-                if (time_p0[2] == 0){
-                    if (time_p0[1] == 0){
-                        if (time_p0[0] == 0){
-                            lcd_cmd(L_CLR);
-                            lcd_cmd(L_L1);
-                            lcd_str("Gracz 1 przegral");
-                            lcd_cmd(L_L2);
-                            lcd_str("koniec czasu!   ");
-                            running = 0;
-                        } else {
-                            time_p0[0] = time_p0[0] - 1;
-                            time_p0[1] = 5;
-                            time_p0[2] = 9;
-                        }
-                    } else {
-                        time_p0[1] = time_p0[1] - 1;
-                    }
+            change_time(((unsigned int)adc(1)/10));
+            put_time_on_display();
+            if (PORTBbits.RB3 == 0){
+                running = 1;
+                turn = 2;
+            } 
+            if (PORTBbits.RB5 == 0) {
+                running = 1;
+                turn = 1;
+            }
+            delay(200);
+        } else {
+            if (PORTBbits.RB3 == 0){
+                turn = 2;
+            } 
+            if (PORTBbits.RB5 == 0) {
+                turn = 1;
+            }
+            if (turn == 1){
+                if ((time1[0] == 0) && (time1[1] == 0) && (time1[2] == 0)){
+                    lcd_cmd(L_CLR);
+                    lcd_cmd(L_L1);
+                    lcd_str("GRACZ 1 PRZEGRAL");
+                    lcd_cmd(L_L2);
+                    lcd_str("   PRZEZ CZAS   ");
+                    delay(5000);
+                    running = 0;
+                    change_time(((unsigned int)adc(1)/10));
                 } else {
-                    time_p0[2] = time_p0[2] - 1;
+                    decreese_timer1();
                 }
-            } else {
-                if (time_p1[2] == 0){
-                    if (time_p1[1] == 0){
-                        if (time_p1[0] == 0){
-                            lcd_cmd(L_CLR);
-                            lcd_cmd(L_L1);
-                            lcd_str("Gracz 2 przegral");
-                            lcd_cmd(L_L2);
-                            lcd_str("koniec czasu!   ");
-                            running = 0;
-                        } else {
-                            time_p1[0] = time_p1[0] - 1;
-                            time_p1[1] = 5;
-                            time_p1[2] = 9;
-                        }
-                    } else {
-                        time_p1[1] = time_p1[1] - 1;
-                    }
+            } else if (turn == 2) {
+                if ((time2[0] == 0) && (time2[1] == 0) && (time2[2] == 0)){
+                    lcd_cmd(L_CLR);
+                    lcd_cmd(L_L1);
+                    lcd_str("GRACZ 2 PRZEGRAL");
+                    lcd_cmd(L_L2);
+                    lcd_str("   PRZEZ CZAS   ");
+                    delay(5000);
+                    running = 0;
+                    change_time(((unsigned int)adc(1)/10));
                 } else {
-                    time_p1[2] = time_p1[2] - 1;
+                    decreese_timer2();
                 }
             }
-        } else {
-            
+            put_time_on_display();
+            delay(1000);
         }
-       delay(1000);
-       set_timer(time_p0, time_p1);
+        
+        lcd_cmd(L_CLR);
+        lcd_cmd(L_L1);
+        lcd_str("GRACZ 1  GRACZ 2");
+        lcd_cmd(L_L2);
+        lcd_str(timer);
     }
     
     return;
