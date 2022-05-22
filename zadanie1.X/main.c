@@ -55,7 +55,7 @@
 
 #include <xc.h>
 
-unsigned char grey = 0;
+unsigned char gray = 0;
 unsigned char bcd = 0;
 int sum = 0;
 int added = 0;
@@ -103,15 +103,17 @@ unsigned char bin_down(unsigned char display) {
     return (display - 1);
 }
 
-unsigned char grey_up(unsigned char display) {
-    display = (grey >>1) ^ grey;
-    grey = grey + 1;
+unsigned char gray_up() {
+    unsigned char display;
+    display = (gray >>1) ^ gray;
+    gray = gray + 1;
     return display;
 }
 
-unsigned char grey_down(unsigned char display) {
-    display = (grey >>1) ^ grey;
-    grey = grey - 1;
+unsigned char gray_down() {
+    unsigned char display;
+    display = (gray >>1) ^ gray;
+    gray = gray - 1;
     return display;
 }
 
@@ -209,9 +211,9 @@ void main(void) {
             task = setTask(task, 1);
             display = setDisplay(task);
             if (task == 3) {
-                grey = 1;
+                gray = 1;
             } else if (task == 4) {
-                grey = 255;
+                gray = 255;
             } else if (task == 5) {
                 bcd = 0;
             } else if (task == 6) {
@@ -226,9 +228,9 @@ void main(void) {
             task = setTask(task, -1);
             display = setDisplay(task);
             if (task == 3) {
-                grey = 1;
+                gray = 1;
             } else if (task == 4) {
-                grey = 255;
+                gray = 255;
             } else if (task == 5) {
                 bcd = 0;
             } else if (task == 6) {
@@ -246,9 +248,9 @@ void main(void) {
         } else if (task == 2) {
             display = bin_down(display);
         } else if (task == 3) {
-            display = grey_up(display);
+            display = gray_up();
         } else if (task == 4) {
-            display = grey_down(display);
+            display = gray_down();
         } else if (task == 5) {
             display = bcd_up();
         } else if (task == 6) {
